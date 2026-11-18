@@ -1,0 +1,22 @@
+[
+  {
+    "url": "https://raw.githubusercontent.com/mooncrown04/moonrepo/builds/MooncrownPlugin.cs3",
+    "status": 1,
+    "version": 1,
+    "name": "MooncrownPlugin",
+    "internalName": "MooncrownPlugin",
+    "authors": [
+      "MoOnCrOwN"
+    ],
+    "description": "Font, tema ve kumanda tuslari + M3U listeleri (her kategori bir dizi, kanallar bolum).",
+    "fileSize": 82145,
+    "repositoryUrl": "https://github.com/mooncrown04/moonrepo",
+    "language": "tr",
+    "tvTypes": [
+      "Others",
+      "TvSeries"
+    ],
+    "iconUrl": "https://www.google.com/s2/favicons?domain=cloudstream.miraheze.org&sz=%size%",
+    "apiVersion": 1
+  }
+]
