@@ -1,4 +1,4 @@
-name: Build cs
+name: Buildd cs
 
 concurrency:
   group: "build"
