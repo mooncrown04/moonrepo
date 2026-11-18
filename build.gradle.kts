@@ -50,7 +50,7 @@ subprojects {
 
        cloudstream {
         // GitHub Actions çalışırken mevcut repo adını alır, yerelde varsayılanı kullanır
-        setRepo(System.getenv("GITHUB_REPOSITORY") ?: "https://github.com/mooncrown04/TestPlugins")
+        setRepo(System.getenv("GITHUB_REPOSITORY") ?: "https://github.com/mooncrown04/moonrepo")
     }
 
     android {
