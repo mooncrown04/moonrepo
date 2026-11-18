@@ -26,8 +26,20 @@ jobs:
       - name: Checkout builds branch
         uses: actions/checkout@v4
         with:
-          ref: builds
           path: builds
+          repository: ${{ github.repository }}
+          persist-credentials: true
+
+      - name: Prepare builds branch
+        working-directory: builds
+        run: |
+          git fetch origin builds || true
+          if git rev-parse --verify origin/builds >/dev/null 2>&1; then
+            git checkout builds
+          else
+            git checkout --orphan builds
+            git rm -rf . || true
+          fi
 
       - name: Clean old builds
         run: rm -f $GITHUB_WORKSPACE/builds/*.cs3
