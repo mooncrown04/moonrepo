@@ -74,13 +74,29 @@ jobs:
           SDK_MANAGER=$(find $ANDROID_HOME -name sdkmanager | head -n 1)
           yes | $SDK_MANAGER --licenses || true
 
-      - name: Fix Gradle Wrapper if Missing
+      - name: Fix Gradle Wrapper Files
         working-directory: src
         run: |
+          mkdir -p gradle/wrapper
+          
+          # 1. jar dosyası yoksa indir
           if [ ! -f "gradle/wrapper/gradle-wrapper.jar" ]; then
-            echo "gradle-wrapper.jar eksik, otomatik olarak indiriliyor..."
-            mkdir -p gradle/wrapper
+            echo "gradle-wrapper.jar eksik, indiriliyor..."
             curl -L -s https://raw.githubusercontent.com/gradle/gradle/v8.5.0/gradle/wrapper/gradle-wrapper.jar -o gradle/wrapper/gradle-wrapper.jar
+          fi
+          
+          # 2. properties dosyası yoksa otomatik oluştur
+          if [ ! -f "gradle/wrapper/gradle-wrapper.properties" ]; then
+            echo "gradle-wrapper.properties eksik, oluşturuluyor..."
+            cat << 'EOF' > gradle/wrapper/gradle-wrapper.properties
+          distributionBase=GRADLE_USER_HOME
+          distributionPath=wrapper/dists
+          distributionUrl=https\://services.gradle.org/distributions/gradle-8.5-bin.zip
+          networkTimeout=10000
+          validateDistributionUrl=true
+          zipStoreBase=GRADLE_USER_HOME
+          zipStorePath=wrapper/dists
+          EOF
           fi
 
       - name: Fix local.properties for Linux runner
